@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ChatGPT API Playground(WIP)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="parameters-and-api-container">
+            <div class="parameters-container">
+                <h3>Parameters(Working in progress)</h3>
+                <div class="parameter">
+                    <label for="api-key
+            -input">API Key:</label>
+                    <input type="text" id="api-key-input">
+                    <button id="set-api-key-btn">Set API Key</button>
+                    <p>Your OpenAI API key, which is required to use the API. You can find your API key in the OpenAI
+                        Dashboard.</p>
+                </div>
+                <div class="parameter">
+                    <label for="model-input">Model:</label>
+                    <input type="text" id="model-input" value="gpt-3.5-turbo">
+                    <p>A string that specifies the ID of the model to use. Currently, only gpt-3.5-turbo and
+                        gpt-3.5-turbo-0301 are supported.</p>
+                </div>
+                <div class="parameter">
+                    <label for="temperature-input">Temperature:</label>
+                    <input type="number" id="temperature-input" min="0" max="2" step="0.1" value="1">
+                    <p>A number that specifies what sampling temperature to use, between 0 and 2. Higher values like 0.8
+                        will make the output more random, while lower values like 0.2 will make it more focused and
+                        deterministic. Defaults to 1.</p>
+                </div>
+                <div class="parameter">
+                    <label for="top-p-input">Top P:</label>
+                    <input type="number" id="top-p-input" min="0" max="1" step="0.1" value="1">
+                    <p>An alternative to sampling with temperature, called nucleus sampling, where the model considers
+                        the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising
+                        the top 10% probability mass are considered. Defaults to 1.</p>
+                </div>
+                <div class="parameter">
+                    <label for="n-input">N:</label>
+                    <input type="number" id="n-input" min="1" max="10" value="1">
+                    <p>How many chat completion choices to generate for each input message. Defaults to 1.</p>
+                </div>
+                <div class="parameter">
+                    <label for="stream-input">Stream:</label>
+                    <input type="checkbox" id="stream-input" value="true">
+                    <p>If set, partial message deltas will be sent, like in ChatGPT. Tokens will be sent as data-only
+                        server-sent events as they become available, with the stream terminated by a data: [DONE]
+                        message. Defaults to false.</p>
+                </div>
+                <div class="parameter">
+                    <label for="stop-input">Stop:</label>
+                    <input type="text" id="stop-input">
+                    <p>Up to 4 sequences where the API will stop generating further tokens.</p>
+                </div>
+                <div class="parameter">
+                    <label for="max-tokens-input">Max Tokens:</label>
+                    <input type="number" id="max-tokens-input" min="1" max="4096" value="50">
+                    <p>The maximum number of tokens allowed for the generated answer. By default, the number of tokens
+                        the model can return will be (4096 - prompt tokens). Defaults to inf.</p>
+                </div>
+                <div class="parameter">
+                    <label for="presence-penalty-input">presence_penalty:</label>
+                    <input type="number" id="presence-penalty-input" min="-2.0" max="2.0" value="0">
+                    <p>number
+                        Optional
+                        Defaults to 0
+                        Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in
+                        the text so far, increasing the model's likelihood to talk about new topics.
+
+                        See more information about frequency and presence penalties.</p>
+                </div>
+                <div class="parameter">
+                    <label for="frequency-penalty-input">frequency_penalty:</label>
+                    <input type="number" id="frequency-penalty-input" min="-2.0" max="2.0" value="0">
+                    <p>number
+                        Optional
+                        Defaults to 0
+                        Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing
+                        frequency in the text so far, decreasing the model's likelihood to repeat the same line
+                        verbatim.
+
+                        See more information about frequency and presence penalties.</p>
+                </div>
+                <div class="parameter">
+                    <label for="logit-bias-input">logit_bias:</label>
+                    <input type="number" id="logit-bias-input" min="1" max="2048">
+                    <p>map
+                        Optional
+                        Defaults to null
+                        Modify the likelihood of specified tokens appearing in the completion.
+
+                        Accepts a json object that maps tokens (specified by their token ID in the tokenizer) to an
+                        associated bias value from -100 to 100. Mathematically, the bias is added to the logits
+                        generated by the model prior to sampling. The exact effect will vary per model, but values
+                        between -1 and 1 should decrease or increase likelihood of selection; values like -100 or 100
+                        should result in a ban or exclusive selection of the relevant token.</p>
+                </div>
+                <div class="parameter">
+                    <label for="user">user:</label>
+                    <input type="number" id="user" min="1" max="2048">
+                    <p>string
+                        Optional
+                        A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. Learn more.</p>
+                </div>
+ 
+            </div>
+            <img src="./ChatGPT API Wechat Group.jpeg" alt="">
+        </div>
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>Chat</h2>
+            </div>
+            <div id="chat-box" class="chat-box">
+                <div class="message assistant">
+                    <p>Hello! How can I help you today?</p>
+                </div>
+                <div class="message user">
+                    <p>Hi, can you tell me about your pricing plans?</p>
+                </div>
+                <div class="message assistant">
+                    <p>Of course! We have a basic plan for $10/month and a premium plan for $25/month. Which one would
+                        you like to know more about?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message here..." value="What's your name?">
+                <button>Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
